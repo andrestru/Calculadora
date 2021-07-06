@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="container" style="position: relative; top: 100px;">
+    <div class="card">
+        <div class="card-header">
+            <h3>Calcular Horas Laborales</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="calcul">
+            <div class="form-group">
+                <label for="">Ingresa Identificación del Tecnico</label>
+                <input formControlName="identification" type="text" class="form-control">
+                <div *ngIf="calcul.controls.identification.errors && calcul.controls.identification.dirty">
+                    <div *ngIf="calcul.controls.identification.errors?.required" class="alert alert-danger">
+                        La Identificación del tecnico es requerida
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Ingresa Semana Laboral</label>
+                <input formControlName="weeks" type="week" class="form-control">
+                <div *ngIf="calcul.controls.weeks.errors && calcul.controls.weeks.dirty">
+                    <div *ngIf="calcul.controls.weeks.errors?.required" class="alert alert-danger">
+                        La Identificación del tecnico es requerida
+                    </div>
+                </div>
+            </div>
+            <button (click)="calculate()" [disabled]="!calcul.valid" class="btn btn-warning">Calcular</button>
+            <button class="btn btn-danger" (click)="goback()">Volver al inicio</button>
+        </form>
+        </div>
+    </div>
+    <div *ngIf="load">
+        <h3>Horas Trabajadas: </h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Normales</th>
+                <th scope="col">Nocturnas</th>
+                <th scope="col">Dominicales</th>
+                <th scope="col">Normales Ext</th>
+                <th scope="col">Nocturnas Ext</th>
+                <th scope="col">Dominicales Ext</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{listado[0]}}</td>
+                <td>{{listado[1]}}</td>
+                <td>{{listado[2]}}</td>
+                <td>{{listado[3]}}</td>
+                <td>{{listado[4]}}</td>
+                <td>{{listado[5]}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

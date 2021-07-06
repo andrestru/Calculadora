@@ -1,0 +1,52 @@
+<app-header></app-header>
+<div class="container" style="top: 100px; position: relative;">
+    <div class="card">
+        <div class="card-header">
+            <h2>Formulario de registro de servicio</h2>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="add">
+                <div class="form-group">
+                    <label for="">Identificación del Tecnico</label>
+                    <input formControlName="identificationT" type="text" class="form-control">
+                    <div *ngIf="add.controls.identificationT.errors && add.controls.identificationT.dirty">
+                        <div *ngIf="add.controls.identificationT.errors?.required" class="alert alert-danger">
+                            La Identificación del tecnico es requerida
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Identificación del Servicio</label>
+                    <input formControlName="identificationS" type="text" class="form-control">
+                    <div *ngIf="add.controls.identificationS.errors && add.controls.identificationS.dirty">
+                        <div *ngIf="add.controls.identificationS.errors?.required" class="alert alert-danger">
+                            La Identificación del servicio es requerida
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Fecha inicial</label>
+                    <input formControlName="startDate" type="datetime-local" class="form-control">
+                    <div *ngIf="add.controls.startDate.errors && add.controls.startDate.dirty">
+                        <div *ngIf="add.controls.startDate.errors?.required" class="alert alert-danger">
+                            La Fecha Inicial es requerida
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="form-group">
+                    <label for="">Fecha final</label>
+                    <input formControlName="finalDate" type="datetime-local" class="form-control">
+                    <div *ngIf="add.controls.finalDate.errors && add.controls.finalDate.dirty">
+                        <div *ngIf="add.controls.finalDate.errors?.required" class="alert alert-danger">
+                            La Fecha Final es requerida
+                        </div>
+                    </div>
+                </div>
+            
+                <button class="btn btn-success" (click)="addReport()" [disabled]="!add.valid">Registrar Servicio</button>
+                <button class="btn btn-danger" (click)="goback()">Volver al inicio</button>
+            </form>
+        </div>
+    </div>
+</div>
